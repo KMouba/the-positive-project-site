@@ -1047,6 +1047,8 @@ em.yellow-home { color: var(--c4u-sun); font-weight: 700; font-style: normal; }
 /* Site public (16/11/2026) : les boutons de don sont des liens actifs. */
 a.options__btn { pointer-events: auto; cursor: pointer; }
 a.options__btn:hover, a.options__btn:focus-visible { background: var(--c4u-aqua); color: #FFFFFF; }
-/* Le film, lu sur place (16/11/2026). */
+/* Le film, lu sur place, sous la vidéo YouTube (16/11/2026). */
+.videos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.75rem; max-width: 44rem; }
 .video--film { margin: 0; }
 .video--film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #24496E; }
+.video--film:hover .video__label { text-decoration: none; }
