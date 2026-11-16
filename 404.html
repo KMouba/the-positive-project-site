@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>the POSITIVE project</title>
+<link rel="icon" type="image/png" href="/assets/logo-tpp.png">
+<script>
+  // Les anciennes adresses de l'application (the-positive-project.com/login, /admin/…)
+  // vivent désormais sur app.the-positive-project.com : on y renvoie, même chemin.
+  // Une page du site mal tapée (.html, /assets) reste ici.
+  (function () {
+    var p = window.location.pathname;
+    if (!/\.html$/.test(p) && p.indexOf('/assets/') !== 0) {
+      window.location.replace('https://app.the-positive-project.com' + p + window.location.search + window.location.hash);
+    }
+  })();
+</script>
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #FFFFFF; color: #1F2937; font: 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; text-align: center; padding: 1rem; }
+  a { color: #17739A; font-weight: 600; }
+</style>
+</head>
+<body>
+<main>
+  <p>This page does not exist.</p>
+  <p><a href="/">the POSITIVE project</a> · <a href="https://app.the-positive-project.com/">Team sign-in</a></p>
+</main>
+</body>
+</html>

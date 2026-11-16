@@ -1,0 +1,1045 @@
+/* the POSITIVE project — site mockup v7, 21 Oct 2026 (v2 base, then the v3, v4, v5, v6 and v7 layers at the end of this file)
+   White paper, the logo as the only colourful element. One ink for headings
+   (the violet of the wordmark), one accent (the teal of the logo's rays), hairlines.
+   System fonts only. No dark theme: the site is white, as asked. */
+
+:root {
+  --violet: #3B2986;
+  --violet-soft: #EFEDF7;
+  --teal: #5DB4AE;
+  --teal-deep: #1A625D;
+
+  --surface: #FFFFFF;
+  --surface-tint: #F7F8FA;
+  --text: #1D2433;
+  --text-muted: #566072;
+  --rule: #DFE3EA;
+  --heading: var(--violet);
+  --link: var(--teal-deep);
+  --mark-no: #8C2F23;
+  --mark-yes: var(--teal-deep);
+  --focus: var(--violet);
+  --radius: 0.875rem;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 8px 24px rgba(16, 24, 40, 0.07);
+
+  /* Mockup-only colours (review bar, placeholders, source labels) */
+  --tbp-bg: #FFF8E6;
+  --tbp-border: #B58A12;
+  --tbp-text: #4A3A06;
+  --tbp-badge: #7A5C0A;
+  --src: #C8452B;
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: "Avenir Next", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+img, svg { max-width: 100%; }
+a { color: var(--link); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--heading); margin: 0; text-wrap: balance; }
+p { margin: 0 0 1em; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+dl, dd { margin: 0; }
+
+.wrap { max-width: 70rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2.5rem); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: 1rem; top: -4rem; background: var(--violet); color: #FFFFFF; padding: 0.5rem 1rem; font-weight: 600; z-index: 50; }
+.skip:focus { top: 0; }
+.eyebrow { font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-deep); margin: 0 0 0.9rem; }
+
+/* ── Review bar: part of the mockup, not of the future site ── */
+.review { background: var(--violet); color: #FFFFFF; font-size: 0.8125rem; line-height: 1.4; }
+.review .wrap { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; align-items: center; justify-content: space-between; padding-block: 0.45rem; }
+.review label { display: inline-flex; gap: 0.45rem; align-items: center; cursor: pointer; }
+.review input { accent-color: #FFFFFF; width: 1rem; height: 1rem; margin: 0; }
+.review a { color: #FFFFFF; }
+
+/* ── Masthead and the four rubrics ── */
+.masthead { position: sticky; top: -4.25rem; z-index: 20; background: var(--surface); border-bottom: 1px solid var(--rule); }
+.masthead .wrap { display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.5rem; }
+.brand { display: flex; align-items: center; gap: 0.7rem; height: 4.25rem; text-decoration: none; color: var(--heading); font-family: var(--serif); font-size: 1.15rem; letter-spacing: 0.01em; flex: 1 0 100%; min-width: 0; white-space: nowrap; }
+.brand img { width: 3.25rem; height: 3.25rem; max-width: none; flex: none; }
+.rubrics { flex: 1 0 100%; margin-inline: calc(-1 * clamp(1rem, 4vw, 2.5rem)); border-top: 1px solid var(--rule); }
+.rubrics ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.rubrics a { display: grid; place-items: center; text-align: center; min-height: 3.25rem; padding: 0.35rem 0.25rem; font-size: 0.8125rem; line-height: 1.2; font-weight: 600; color: var(--text); text-decoration: none; border-bottom: 2px solid transparent; }
+.rubrics a span { display: block; }
+.rubrics a:hover { color: var(--heading); }
+.rubrics a[aria-current="page"] { color: var(--heading); border-bottom-color: var(--violet); }
+@media (min-width: 56rem) {
+  .masthead { top: 0; }
+  .masthead .wrap { flex-wrap: nowrap; column-gap: 1.5rem; }
+  .brand { flex: 0 0 auto; height: 5rem; font-size: 1.3rem; }
+  .brand img { width: 4rem; height: 4rem; }
+  .rubrics { flex: 1 1 auto; margin: 0; border-top: 0; }
+  .rubrics ul { display: flex; justify-content: flex-end; gap: 0.5rem; }
+  .rubrics a { display: flex; align-items: center; gap: 0.3em; min-height: 5rem; padding-inline: 0.85rem; font-size: 0.9375rem; font-weight: 500; }
+}
+
+/* ── Buttons ── */
+.btns { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0.6rem 1.5rem; border-radius: 0.5rem; font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.01em; text-decoration: none; border: 1px solid var(--violet); }
+.btn--solid { background: var(--violet); color: #FFFFFF; }
+.btn--solid:hover { background: #231856; }
+.btn--line { color: var(--violet); background: transparent; }
+.btn--line:hover { background: var(--violet-soft); }
+.btn--light { background: #FFFFFF; color: var(--violet); border-color: #FFFFFF; }
+.btn--light:hover { background: var(--violet-soft); }
+.btn--ghost { background: transparent; color: #FFFFFF; border-color: rgba(255, 255, 255, 0.7); }
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.12); }
+
+/* ── Hero (home): white, the title on the left, the logo on the right ── */
+.hero { border-bottom: 1px solid var(--rule); }
+.hero .wrap { display: grid; gap: 1.5rem; padding-block: 2rem 2.75rem; }
+.hero__logo { width: 12.5rem; height: 12.5rem; margin-left: -0.75rem; }
+.hero h1 { font-size: clamp(2rem, 1.3rem + 3vw, 3.25rem); line-height: 1.12; letter-spacing: -0.005em; max-width: 15em; }
+.hero .lede { font-size: clamp(1.075rem, 1rem + 0.4vw, 1.25rem); line-height: 1.5; color: var(--text); max-width: 32em; margin: 1.25rem 0 0; }
+@media (min-width: 56rem) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 3.5rem; padding-block: 4rem 4.25rem; }
+  .hero__logo { order: 2; width: clamp(17rem, 27vw, 21.5rem); height: auto; margin: 0; }
+}
+
+/* ── Page head (inner pages) ── */
+.pagehead { border-bottom: 1px solid var(--rule); }
+.pagehead .wrap { padding-block: 2.5rem 2.25rem; }
+.pagehead h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3rem); line-height: 1.1; }
+.pagehead .sub { font-family: var(--serif); font-style: italic; font-size: clamp(1.05rem, 1rem + 0.5vw, 1.3rem); line-height: 1.35; color: var(--text); margin: 0.6rem 0 0; max-width: 32em; }
+.pagehead .lede { font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem); line-height: 1.5; max-width: 38em; margin: 1rem 0 0; }
+@media (min-width: 56rem) { .pagehead .wrap { padding-block: 3.5rem 3rem; } }
+
+/* ── Sections: heading in a left rail on wide screens ── */
+.sec { padding-block: clamp(2.25rem, 5vw, 3.75rem); border-top: 1px solid var(--rule); }
+.sec--first { border-top: 0; }
+.sec--tint { background: var(--surface-tint); }
+.sec__head { margin-bottom: 1.75rem; }
+.sec__head .aside { margin-top: 0.4rem; font-size: 1rem; }
+.sec__grid { display: grid; gap: 1.1rem 3.5rem; }
+@media (min-width: 60rem) { .sec__grid { grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); } }
+.sec h2 { font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2rem); line-height: 1.18; }
+.sec h3 { font-family: var(--sans); font-weight: 600; font-size: 1.0625rem; line-height: 1.3; color: var(--heading); }
+.aside { color: var(--text-muted); font-size: 0.9375rem; margin: 0.75rem 0 0; }
+.prose { max-width: 40rem; }
+.prose > :last-child { margin-bottom: 0; }
+.lead { font-size: 1.175rem; line-height: 1.5; }
+
+/* The principle, set as the one sentence to remember */
+.principle { margin: 1.25rem 0; padding: 0.25rem 0 0.25rem 1.25rem; border-left: 2px solid var(--teal); font-family: var(--serif); font-size: clamp(1.15rem, 1.05rem + 0.6vw, 1.4rem); line-height: 1.4; color: var(--heading); }
+
+/* Lists */
+.dots li { position: relative; padding-left: 1.25rem; margin-bottom: 0.4rem; }
+.dots li::before { content: ""; position: absolute; left: 0; top: 0.78em; width: 0.6rem; height: 1px; background: var(--teal-deep); }
+.cols2 { columns: 2 16rem; column-gap: 2.5rem; }
+.cols2 li { break-inside: avoid; }
+
+/* Does not / provides */
+.pair { display: grid; gap: 1.5rem 2.5rem; margin-block: 1.5rem; }
+@media (min-width: 44rem) { .pair { grid-template-columns: 1fr 1fr; } }
+.pair > div { padding-top: 0.9rem; border-top: 2px solid var(--mark-no); }
+.pair > div + div { border-top-color: var(--mark-yes); }
+.pair h3 { margin: 0 0 0.7rem; }
+.marks li { position: relative; padding-left: 1.6rem; margin-bottom: 0.4rem; }
+.marks li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+.marks--no li::before { content: "\00D7"; color: var(--mark-no); font-size: 1.2em; line-height: 1.3; }
+.marks--yes li::before { content: "\2713"; color: var(--mark-yes); }
+
+/* The applied-research chain: six numbered steps, the last one feeding the first */
+.chain { counter-reset: step; display: grid; gap: 0 2.5rem; margin: 1.25rem 0; }
+@media (min-width: 44rem) { .chain { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; } }
+.chain li { counter-increment: step; display: grid; grid-template-columns: 2rem 1fr; align-items: baseline; padding: 0.6rem 0; border-top: 1px solid var(--rule); font-weight: 500; line-height: 1.35; }
+.chain li::before { content: counter(step); font-family: var(--serif); font-size: 1.15rem; color: var(--teal-deep); }
+.chain-note { color: var(--text-muted); font-size: 0.9375rem; margin: -0.5rem 0 1.25rem; }
+
+/* Timeline */
+.steps { max-width: 42rem; }
+.steps li { display: grid; grid-template-columns: 4.25rem 1fr; gap: 0 1rem; padding: 0.9rem 0; border-top: 1px solid var(--rule); }
+.steps li:first-child { border-top: 0; padding-top: 0; }
+.steps h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.25; color: var(--teal-deep); }
+.steps p { margin: 0; }
+
+/* Three levels of engagement */
+.levels { display: grid; gap: 1.25rem; margin-top: 1.75rem; }
+.levels > li { border: 1px solid var(--rule); border-top: 3px solid var(--violet); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.1rem 1.25rem 1.25rem; background: var(--surface); }
+.levels .n { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-deep); margin-bottom: 0.35rem; }
+.levels h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; }
+.levels h3 small { font-family: var(--sans); font-size: 0.875rem; font-weight: 600; color: var(--text-muted); margin-left: 0.5rem; white-space: nowrap; }
+.levels p { margin: 0.6rem 0 0; font-size: 0.975rem; }
+.levels .gets { margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px solid var(--rule); }
+.levels .gets strong { display: block; font-size: 0.8125rem; letter-spacing: 0.04em; color: var(--heading); }
+@media (min-width: 60rem) { .levels { grid-template-columns: repeat(3, 1fr); } }
+.rule { margin: 1.5rem 0 0; font-weight: 600; color: var(--heading); max-width: 46rem; }
+
+/* Definitions and short lists: quiet rows, not cards */
+.rows { display: grid; gap: 0 3rem; }
+@media (min-width: 44rem) { .rows { grid-template-columns: 1fr 1fr; } }
+.rows--one { grid-template-columns: 1fr; max-width: 42rem; }
+.rows > li, .rows > div { padding: 0.85rem 0; border-top: 1px solid var(--rule); }
+.rows h3, .rows dt { font-family: var(--sans); font-weight: 600; font-size: 1.0625rem; line-height: 1.3; color: var(--heading); margin-bottom: 0.2rem; }
+.rows p, .rows dd { margin: 0; }
+.sub-h { margin: 2rem 0 0.75rem; }
+
+/* Figures */
+.figures { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 1.5rem; margin: 0; }
+@media (min-width: 52rem) { .figures { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+.figures div { border-top: 1px solid var(--violet); padding-top: 0.75rem; }
+.figures dt { font-family: var(--serif); font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.75rem); line-height: 1; color: var(--heading); }
+.figures dd { margin: 0.45rem 0 0; font-weight: 500; font-size: 0.9375rem; line-height: 1.35; }
+.figures dd small { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.8125rem; margin-top: 0.15rem; }
+
+/* POSITIVE, letter by letter: the initials carry the word, nothing else */
+.acro { font-family: var(--serif); font-size: clamp(1.2rem, 1.05rem + 0.8vw, 1.55rem); line-height: 1.6; max-width: 31em; margin: 0; }
+.acro b { font-weight: 400; white-space: nowrap; }
+.acro .i { font-weight: 700; color: var(--heading); }
+.mission { max-width: 40rem; margin: 1.75rem 0 0; padding-left: 1.25rem; border-left: 2px solid var(--teal); }
+.mission p { margin: 0; }
+
+/* The four doors */
+.doors { display: grid; gap: 0; }
+.doors a { display: grid; grid-template-columns: 1fr auto; gap: 0.2rem 1rem; align-items: start; align-content: start; height: 100%; padding: 1rem 0; border-top: 1px solid var(--rule); text-decoration: none; color: var(--text); }
+.doors strong { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.2; color: var(--heading); }
+.doors span { grid-column: 1; color: var(--text-muted); font-size: 0.9375rem; line-height: 1.45; }
+.doors svg { grid-column: 2; grid-row: 1; width: 1.25rem; height: 1.25rem; margin-top: 0.3rem; fill: none; stroke: var(--violet); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.doors a:hover strong { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+@media (min-width: 52rem) {
+  .doors { grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .doors a { border-top: 1px solid var(--violet); padding: 0.9rem 0 0; }
+}
+
+/* The four pillars: a virtuous circle */
+.pillars { display: grid; gap: 1.75rem 3.5rem; align-items: center; }
+.pillars__fig { width: min(100%, 23rem); margin-inline: auto; display: block; height: auto; }
+.pillars__fig .ring { fill: none; stroke: var(--teal); stroke-width: 1.5; }
+.pillars__fig .head { fill: var(--teal-deep); }
+.pillars__fig .node { fill: #FFFFFF; stroke: var(--violet); stroke-width: 1.25; }
+.pillars__fig .label { font-family: var(--sans); font-size: 16px; font-weight: 600; fill: var(--violet); text-anchor: middle; dominant-baseline: central; }
+.pillars__fig .center { font-family: var(--serif); font-style: italic; font-size: 17px; fill: var(--text); text-anchor: middle; }
+.pillars__list { display: grid; gap: 0 2.5rem; }
+.pillars__list > div { padding: 0.85rem 0; border-top: 1px solid var(--rule); }
+.pillars__list dt { font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; color: var(--heading); margin-bottom: 0.2rem; }
+.pillars__list dd { font-size: 0.975rem; line-height: 1.5; }
+.pillars__say { font-family: var(--serif); font-size: clamp(1.15rem, 1.05rem + 0.6vw, 1.4rem); line-height: 1.45; color: var(--heading); max-width: 38em; margin: 0.9rem 0 0; }
+.pillars__words { font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-deep); margin: 0.9rem 0 0; }
+@media (min-width: 36rem) { .pillars__list { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 60rem) { .pillars { grid-template-columns: 23rem minmax(0, 1fr); margin-top: 2.25rem; } }
+
+/* Three cards with a photo (from the current site) */
+.cards { display: grid; gap: 1.5rem; }
+@media (min-width: 48rem) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.card { display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.card img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.card > div { padding: 1.1rem 1.25rem 1.3rem; }
+.card h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; margin-bottom: 0.35rem; }
+.card p { margin: 0; font-size: 0.975rem; }
+
+/* Photo strip: every photo whole, scrolled sideways inside its own box */
+.gallery { margin-top: 2rem; overflow-x: auto; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; border-radius: var(--radius); }
+.gallery ul { display: flex; gap: 0.75rem; width: max-content; padding-bottom: 0.75rem; }
+.gallery li { flex: none; scroll-snap-align: start; }
+.gallery img { display: block; height: 13rem; width: auto; max-width: none; border-radius: var(--radius); }
+@media (min-width: 48rem) { .gallery img { height: 17rem; } }
+.gallery__hint { margin: 0.5rem 0 0; color: var(--text-muted); font-size: 0.875rem; }
+
+/* Video: a link with its poster, nothing loaded from elsewhere until the click */
+.video { position: relative; display: block; max-width: 44rem; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--rule); text-decoration: none; color: var(--text); background: #FFFFFF; }
+.video img { display: block; width: 100%; height: auto; }
+.video__play { position: absolute; left: 50%; top: calc((100% - 3.25rem) / 2); width: 4.5rem; height: 4.5rem; margin: -2.25rem 0 0 -2.25rem; border-radius: 50%; background: rgba(47, 33, 112, 0.92); box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.85); }
+.video__play::after { content: ""; position: absolute; left: 54%; top: 50%; transform: translate(-50%, -50%); border: 0.85rem solid transparent; border-left: 1.35rem solid #FFFFFF; border-right-width: 0; }
+.video__label { display: block; padding: 0.85rem 1.1rem; font-weight: 600; color: var(--heading); min-height: 3.25rem; }
+.video__label small { font-weight: 400; color: var(--text-muted); font-size: 0.875rem; }
+.video:hover .video__label { text-decoration: underline; }
+
+/* Call to action: the one band of colour on the page */
+.cta { background: var(--violet); color: #FFFFFF; }
+.cta .wrap { padding-block: clamp(2.5rem, 6vw, 4rem); }
+.cta h2 { color: #FFFFFF; font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.25rem); line-height: 1.18; max-width: 22em; }
+.cta p { margin: 0.9rem 0 0; max-width: 38rem; font-size: 1.075rem; }
+.cta .btns { margin-top: 1.75rem; }
+.cta__mail { font-size: 0.9375rem; }
+.cta a:not(.btn) { color: #FFFFFF; }
+.cta :focus-visible { outline-color: #FFFFFF; }
+
+/* Partner hospitals: logo and name, four equal cells */
+.hospitals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+@media (min-width: 52rem) { .hospitals { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.hospitals li { border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1rem 0.75rem 0.9rem; text-align: center; font-size: 0.8125rem; line-height: 1.35; font-weight: 500; background: #FFFFFF; }
+.hospitals .mark { display: grid; place-items: center; height: 4.75rem; margin-bottom: 0.75rem; }
+.hospitals img { display: block; max-width: 100%; max-height: 4.75rem; width: auto; height: auto; object-fit: contain; }
+.nobr { white-space: nowrap; }
+.figures dd small.names { line-height: 1.45; margin-top: 0.4rem; }
+
+/* Testimonials, as published on the current page */
+.quotes { display: grid; gap: 1.5rem; align-items: start; }
+@media (min-width: 52rem) { .quotes { grid-template-columns: 1fr 1fr; } }
+.quote { margin: 0; padding: 1.4rem 1.5rem; background: #FFFFFF; border: 1px solid var(--rule); border-top: 3px solid var(--teal); border-radius: var(--radius); box-shadow: var(--shadow); }
+.quote blockquote { margin: 0; }
+.quote p { margin: 0; font-family: var(--serif); font-size: 1.075rem; line-height: 1.55; }
+.quote figcaption { margin-top: 0.9rem; font-size: 0.875rem; line-height: 1.4; color: var(--text-muted); }
+.quote figcaption strong { display: block; font-weight: 600; color: var(--heading); }
+.cycles-note { margin: 1.25rem 0 0; max-width: 42rem; color: var(--text-muted); font-size: 0.9375rem; }
+
+/* Contact line */
+.contact { font-family: var(--serif); font-size: clamp(1.2rem, 1.1rem + 0.6vw, 1.5rem); line-height: 1.3; margin: 0.25rem 0 0; overflow-wrap: anywhere; }
+.contact a { color: var(--heading); }
+
+/* Next page */
+.next { border-top: 1px solid var(--rule); background: var(--surface); }
+.next a { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1.5rem; text-decoration: none; color: var(--text); }
+.next small { display: block; color: var(--text-muted); font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.next strong { font-family: var(--serif); font-weight: 400; font-size: clamp(1.3rem, 1.15rem + 0.8vw, 1.6rem); color: var(--heading); line-height: 1.2; }
+.next svg { flex: none; width: 1.5rem; height: 1.5rem; fill: none; stroke: var(--violet); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Placeholders (mockup only): content still to be provided, or waiting for a decision */
+.tbp { display: block; background: var(--tbp-bg); color: var(--tbp-text); border: 1px dashed var(--tbp-border); border-radius: 3px; padding: 0.7rem 0.9rem; font-size: 0.9rem; line-height: 1.45; max-width: 42rem; }
+.tbp b { display: inline-block; margin-right: 0.45rem; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--tbp-badge); color: #FFFFFF; padding: 0.1rem 0.5rem; border-radius: 2px; vertical-align: 0.08em; }
+.tbp--inline { display: inline-block; padding: 0.1rem 0.5rem; margin-left: 0.4rem; }
+* + .tbp { margin-top: 1rem; }
+.tbp--inline, .foot .tbp { margin-top: 0.5rem; }
+
+/* Technical partner */
+.partner { display: grid; gap: 1.25rem 2rem; align-items: start; }
+@media (min-width: 44rem) { .partner { grid-template-columns: 12rem 1fr; } }
+.partner .logo { border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1rem; display: grid; place-items: center; max-width: 12rem; background: #FFFFFF; }
+.partner img { display: block; width: 100%; height: auto; }
+
+/* Governance table */
+.gov { width: 100%; border-collapse: collapse; max-width: 46rem; }
+.gov th, .gov td { text-align: left; vertical-align: top; padding: 0.85rem 0; border-top: 1px solid var(--rule); }
+.gov tr:first-child th, .gov tr:first-child td { border-top: 0; padding-top: 0; }
+.gov th { font-family: var(--sans); font-weight: 600; font-size: 1.0625rem; line-height: 1.3; color: var(--heading); padding-right: 1.5rem; width: 38%; }
+@media (max-width: 36rem) {
+  .gov th, .gov td { display: block; width: auto; padding: 0; border-top: 0; }
+  .gov th { padding-top: 0.85rem; border-top: 1px solid var(--rule); }
+  .gov tr:first-child th { padding-top: 0; }
+  .gov td { padding-bottom: 0.85rem; }
+}
+.pipeline { display: flex; flex-wrap: wrap; gap: 0.35rem 0.5rem; align-items: center; margin: 1.25rem 0 0; font-size: 0.9375rem; font-weight: 600; color: var(--heading); }
+.pipeline li:not(:last-child)::after { content: "\2192"; margin-left: 0.5rem; color: var(--teal-deep); font-weight: 400; }
+
+/* Footer */
+.foot { background: var(--surface-tint); border-top: 1px solid var(--rule); font-size: 0.9375rem; }
+.foot .wrap { display: grid; gap: 1.75rem 3rem; padding-block: 2.5rem 1.75rem; }
+@media (min-width: 52rem) { .foot .wrap { grid-template-columns: 1.4fr 0.8fr 1.2fr; } }
+.foot h2 { font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-deep); margin-bottom: 0.7rem; }
+.foot .brandline { display: flex; gap: 0.85rem; align-items: center; font-family: var(--serif); font-size: 1.2rem; color: var(--heading); margin-bottom: 0.75rem; }
+.foot .brandline img { width: 4.5rem; height: 4.5rem; background: #FFFFFF; border-radius: 50%; }
+.foot li { margin-bottom: 0.3rem; }
+.foot p { margin-bottom: 0.5rem; }
+.foot a { overflow-wrap: anywhere; }
+.foot .legal { grid-column: 1 / -1; border-top: 1px solid var(--rule); padding-top: 1.1rem; color: var(--text-muted); font-size: 0.875rem; }
+
+/* Source labels (review only): where each block of text comes from */
+[data-src] { position: relative; }
+html:has(#show-src:checked) [data-src] { outline: 1px dashed var(--src); outline-offset: 0.35rem; }
+html:has(#show-src:checked) [data-src]::after { content: attr(data-src); position: absolute; top: -1rem; right: 0; z-index: 5; max-width: 100%; overflow: hidden; text-overflow: ellipsis; font: 700 0.6875rem/1.5 var(--sans); letter-spacing: 0; text-transform: none; white-space: nowrap; background: var(--src); color: #FFFFFF; padding: 0 0.5rem; border-radius: 2px; }
+
+/* Proposal document (page-cocoon4us-proposition.html) */
+.doc { max-width: 60rem; }
+.doc h2 { font-size: clamp(1.4rem, 1.2rem + 1vw, 1.8rem); margin: 2.75rem 0 0.75rem; }
+.doc h3 { font-family: var(--sans); font-weight: 600; font-size: 1.1rem; margin: 2rem 0 0.5rem; }
+.doc .where { color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 0.5rem; }
+.paste { background: var(--surface-tint); border: 1px solid var(--rule); border-left: 3px solid var(--violet); padding: 1rem 1.25rem; margin: 0 0 1rem; -webkit-user-select: all; user-select: all; }
+.paste > :last-child { margin-bottom: 0; }
+.paste ul { list-style: disc; padding-left: 1.3rem; margin-bottom: 1em; }
+.paste ol { list-style: decimal; padding-left: 1.4rem; margin-bottom: 1em; }
+.paste h4 { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; color: var(--heading); margin: 0 0 0.4rem; }
+.changes { width: 100%; border-collapse: collapse; font-size: 0.9375rem; margin-top: 0.75rem; }
+.changes th, .changes td { text-align: left; vertical-align: top; padding: 0.7rem 0.75rem 0.7rem 0; border-top: 1px solid var(--rule); }
+.changes thead th { border-top: 0; color: var(--text-muted); font-weight: 700; }
+.changes del { color: var(--mark-no); }
+.changes ins { color: var(--mark-yes); text-decoration: none; font-weight: 600; }
+@media (max-width: 44rem) {
+  .changes thead { display: none; }
+  .changes tr { display: block; padding: 0.8rem 0; border-top: 1px solid var(--rule); }
+  .changes th, .changes td { display: block; border: 0; padding: 0.15rem 0; }
+  .changes td:nth-child(1) { font-weight: 700; color: var(--heading); }
+  .changes td:nth-child(n+2)::before { display: block; font-size: 0.8125rem; font-weight: 700; color: var(--text-muted); margin-top: 0.35rem; }
+  .changes td:nth-child(2)::before { content: "Aujourd\2019hui"; }
+  .changes td:nth-child(3)::before { content: "Propos\E9"; }
+  .changes td:nth-child(4)::before { content: "Pourquoi"; }
+}
+
+
+/* ═════════════ v3 layer: warmer, from the logo and the brochure ═════════════
+   Logo colours: violet of the wordmark, coral of the heart, the rainbow
+   (red, orange, yellow), teal of the rays, sky of the smile. Soft tints for
+   some sections, generous rounded corners, a few pieces of the logo. */
+:root {
+  --coral: #F36B4F;
+  --coral-deep: #C2412A;
+  --orange: #F59E4B;
+  --sun: #F4C947;
+  --rainbow-red: #C8402A;
+  --sky: #5BAEDA;
+  --sky-deep: #1F6FA8;
+  --sky-soft: #EAF5FB;
+  --sun-soft: #FEF6E0;
+  --coral-soft: #FDEEEA;
+  --teal-soft: #E7F5F3;
+  --violet-soft: #F0EEF8;
+  --radius: 1.5rem;
+  --shadow: 0 1px 2px rgba(59, 41, 134, 0.06), 0 10px 28px rgba(59, 41, 134, 0.09);
+}
+
+/* Titles: bolder, in the violet of the logo, each with a small rainbow under it */
+h1 { font-weight: 700; }
+.sec h2:not(.vh) { position: relative; padding-bottom: 0.7rem; align-self: start; }
+.sec__grid > div:first-child:has(> h2) { align-self: start; }
+.sec h2:not(.vh)::after { content: ""; position: absolute; left: 0; bottom: 0; width: 3.25rem; height: 0.3rem; border-radius: 99px;
+  background: linear-gradient(90deg, var(--rainbow-red) 0 33%, var(--orange) 33% 66%, var(--sun) 66% 100%); }
+.cta h2::after { display: none; }
+.h-deco { display: inline-block; width: 2.4rem; height: auto; vertical-align: -0.1em; margin-left: 0.4rem; }
+
+/* Sections in soft colours from the logo (the page stays mostly white) */
+.sec--sky { background: var(--sky-soft); }
+.sec--sun { background: var(--sun-soft); }
+.sec--teal { background: var(--teal-soft); }
+.sec--coral { background: var(--coral-soft); }
+.sec--sky, .sec--sun, .sec--teal, .sec--coral { border-top-color: transparent; }
+
+/* Buttons: round, like the logo */
+.btn { border-radius: 99px; padding-inline: 1.6rem; }
+.btn--solid { background: var(--violet); border-color: var(--violet); }
+.btn--solid:hover { background: #2E1F6C; }
+.btn--line { border-width: 2px; }
+
+/* Hero: the logo on a soft sun-coloured disc, a coral accent in the title */
+.hero { border-bottom: 0; }
+.hero h1 em { font-style: normal; color: var(--coral-deep); }
+.hero__mark { display: grid; place-items: center; width: 14rem; height: 14rem; border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #FFFFFF 0 52%, var(--sun-soft) 53% 100%); }
+.hero__mark .hero__logo { width: 88%; height: auto; margin: 0; }
+@media (min-width: 56rem) {
+  .hero__mark { order: 2; width: clamp(20rem, 30vw, 25rem); height: clamp(20rem, 30vw, 25rem); }
+}
+
+/* Photo band under the hero: three large photos */
+.band { padding-bottom: clamp(2rem, 5vw, 3.5rem); }
+.mosaic { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.mosaic li:first-child { grid-column: 1 / -1; }
+.mosaic img { display: block; width: 100%; height: 13rem; object-fit: cover; border-radius: var(--radius); }
+.mosaic li:first-child img { height: 15rem; }
+@media (min-width: 48rem) {
+  .mosaic { grid-template-columns: 1.35fr 1fr 1fr; gap: 1rem; }
+  .mosaic li:first-child { grid-column: auto; }
+  .mosaic img, .mosaic li:first-child img { height: 21rem; }
+}
+
+/* POSITIVE, letter by letter: coral initials, as in the brochure */
+.acro .i { color: var(--coral-deep); }
+.mission { position: relative; border-left: 0; padding: 1.25rem 1.4rem 1.25rem 4.4rem; background: var(--coral-soft); border-radius: var(--radius); }
+.mission__heart { position: absolute; left: 1.2rem; top: 1.25rem; width: 2.3rem; height: auto; }
+
+/* Cards, levels, partner cells, testimonials: generous corners */
+.card, .levels > li, .hospitals li, .quote, .partner .logo, .video { border-radius: var(--radius); }
+.card img { aspect-ratio: 4 / 3; }
+.card h3 { color: var(--violet); }
+.cards .card:nth-child(1) { border-top: 0.35rem solid var(--coral); }
+.cards .card:nth-child(2) { border-top: 0.35rem solid var(--sun); }
+.cards .card:nth-child(3) { border-top: 0.35rem solid var(--teal); }
+.levels > li { border-top-width: 0.45rem; }
+.levels > li:nth-child(1) { border-top-color: var(--teal); }
+.levels > li:nth-child(2) { border-top-color: var(--sky); }
+.levels > li:nth-child(3) { border-top-color: var(--sun); }
+.levels .n { color: var(--coral-deep); }
+.quote { border-top: 0; position: relative; padding-top: 2.6rem; }
+.quote::before { content: "\201C"; position: absolute; left: 1.3rem; top: 0.2rem; font-family: var(--serif); font-size: 3.6rem; line-height: 1; color: var(--coral); }
+
+/* Figures: big, warm numbers */
+.figures div { border-top: 0.3rem solid var(--orange); border-radius: 2px; }
+.figures div:nth-child(2) { border-top-color: var(--coral); }
+.figures div:nth-child(3) { border-top-color: var(--teal); }
+.figures div:nth-child(4) { border-top-color: var(--sky); }
+.figures dt { font-weight: 700; }
+
+/* The four doors: soft coloured cards */
+@media (min-width: 52rem) { .doors { gap: 1rem; } }
+.doors a { border: 0; border-radius: var(--radius); padding: 1.1rem 1.25rem 1.25rem; margin-bottom: 0.75rem; }
+@media (min-width: 52rem) { .doors a { border-top: 0; padding: 1.25rem 1.25rem 1.4rem; margin: 0; } }
+.doors li:nth-child(1) a { background: var(--sky-soft); }
+.doors li:nth-child(2) a { background: var(--teal-soft); }
+.doors li:nth-child(3) a { background: var(--sun-soft); }
+.doors li:nth-child(4) a { background: var(--coral-soft); }
+.doors a:hover { filter: saturate(1.4); }
+.doors svg { width: 1.6rem; height: 1.6rem; padding: 0.3rem; border-radius: 50%; background: #FFFFFF; }
+
+/* The four pillars: each node in a colour of the logo */
+.pillars__fig .node { stroke-width: 1.5; }
+.pillars__fig .n1 { fill: var(--coral-soft); stroke: var(--coral); }
+.pillars__fig .n2 { fill: var(--sky-soft); stroke: var(--sky); }
+.pillars__fig .n3 { fill: var(--teal-soft); stroke: var(--teal); }
+.pillars__fig .n4 { fill: var(--sun-soft); stroke: var(--orange); }
+.pillars__list dt::before { content: ""; display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 50%; margin-right: 0.5rem; vertical-align: 0.12em; background: var(--coral); }
+.pillars__list > div:nth-child(2) dt::before { background: var(--sky); }
+.pillars__list > div:nth-child(3) dt::before { background: var(--teal); }
+.pillars__list > div:nth-child(4) dt::before { background: var(--orange); }
+.pillars__words { color: var(--coral-deep); }
+
+/* Inner page heads: the rays of the logo, faint, on the right */
+.pagehead { position: relative; overflow: hidden; border-bottom: 0; }
+.pagehead::after { content: ""; position: absolute; right: -6rem; top: -5rem; width: 22rem; height: 22rem; background: url("assets/deco/rays.png") center / contain no-repeat; opacity: 0.45; pointer-events: none; }
+.pagehead .wrap { position: relative; z-index: 1; }
+@media (min-width: 56rem) { .pagehead::after { right: 2rem; top: -3.5rem; width: 24rem; height: 24rem; opacity: 0.55; } }
+.pagehead h1, .pagehead .lede, .pagehead .sub { max-width: 40rem; }
+
+/* Photo strip: bigger photos */
+.gallery img { height: 15rem; border-radius: 1rem; }
+@media (min-width: 48rem) { .gallery img { height: 20rem; } }
+
+/* Call to action: violet, with the rainbow of the logo */
+.cta { position: relative; overflow: hidden; }
+.cta .wrap { position: relative; }
+.cta__rainbow { display: block; width: 9rem; height: auto; margin-bottom: 1rem; }
+@media (min-width: 56rem) { .cta__rainbow { position: absolute; right: clamp(1rem, 4vw, 2.5rem); top: 50%; transform: translateY(-50%); width: 15rem; margin: 0; } }
+.btn--light { color: var(--violet); }
+
+/* Footer: a rainbow line on top */
+.foot { border-top: 0; background: var(--violet-soft); position: relative; }
+.foot::before { content: ""; display: block; height: 0.35rem; background: linear-gradient(90deg, var(--rainbow-red) 0 33.3%, var(--orange) 33.3% 66.6%, var(--sun) 66.6% 100%); }
+
+/* Review only: sentences we wrote that Terry asked to review together with Khalil */
+html:has(#show-src:checked) [data-review] { outline: 2px solid var(--violet); outline-offset: 0.35rem; }
+html:has(#show-src:checked) [data-review]::before { content: attr(data-review); position: absolute; top: -1rem; left: 0; z-index: 6; font: 700 0.6875rem/1.5 var(--sans); white-space: nowrap; background: var(--violet); color: #FFFFFF; padding: 0 0.5rem; border-radius: 2px; }
+
+
+/* ═════════════ v4 layer (17/10/2026): Terry's remarks ═════════════
+   The blue of the smile replaces the violet; violet is kept for emphasis only.
+   Logo on white, animated. The carousel and the "How we support" cards of
+   cocoon4us.com. A dark blue call to action. */
+:root {
+  --smile: #68C8E8;
+  --smile-soft: #EAF6FB;
+  --blue: #17739A;
+  --blue-deep: #0F4C6B;
+  --heading: var(--blue);
+  --focus: var(--blue);
+  --shadow: 0 1px 2px rgba(15, 76, 107, 0.06), 0 10px 28px rgba(15, 76, 107, 0.10);
+}
+.review { background: var(--blue-deep); }
+.muted { color: var(--text-muted); }
+em { font-style: normal; color: var(--violet); font-weight: 600; }
+
+/* Menu: three sections, "Get involved" as a pill, as on cocoon4us.com */
+.rubrics ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.rubrics a[aria-current="page"] { border-bottom-color: var(--blue); }
+@media (min-width: 56rem) {
+  .rubrics ul { align-items: center; }
+  .rubrics a.rubrics__cta { min-height: 2.75rem; margin-left: 0.5rem; padding-inline: 1.3rem; border-radius: 99px; background: var(--blue-deep); color: #FFFFFF; border-bottom: 0; }
+  .rubrics a.rubrics__cta:hover { background: var(--blue); color: #FFFFFF; }
+}
+
+/* Buttons and small details in blue */
+.btn { border-color: var(--blue-deep); }
+.btn--solid { background: var(--blue-deep); border-color: var(--blue-deep); }
+.btn--solid:hover { background: var(--blue); }
+.btn--line { color: var(--blue-deep); }
+.btn--line:hover { background: var(--smile-soft); }
+.btn--light { color: var(--blue-deep); border-color: #FFFFFF; }
+.btn--light:hover { background: var(--smile-soft); }
+.doors svg { stroke: var(--blue); }
+.pillars__fig .label { fill: var(--blue-deep); }
+.pillars__fig .ring { stroke: var(--smile); }
+.pillars__fig .head { fill: var(--blue); }
+.levels .n { color: var(--blue); }
+.acro .i { color: var(--violet); }
+.sec--sky { background: var(--smile-soft); }
+
+/* Hero: the logo on a white card (no beige disc), animated from its own layers */
+.hero h1 em { color: var(--violet); font-weight: inherit; }
+.hero__mark { width: 15rem; height: 15rem; border-radius: 2rem; background: #FFFFFF; box-shadow: var(--shadow); }
+@media (min-width: 56rem) { .hero__mark { width: clamp(20rem, 30vw, 25rem); height: clamp(20rem, 30vw, 25rem); } }
+.logo-live { position: relative; width: 92%; aspect-ratio: 1; }
+.logo-live img { position: absolute; inset: 0; width: 100%; height: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  .logo-live__rays { animation: tpp-rays 14s ease-in-out infinite; }
+  .logo-live__heart { transform-origin: 32.5% 74.5%; animation: tpp-beat 1.8s ease-in-out infinite; }
+  .logo-live__smile { transform-origin: 66% 82%; animation: tpp-smile 3.6s ease-in-out infinite; }
+  .logo-live__rainbow { transform-origin: 55% 77%; animation: tpp-float 4.8s ease-in-out infinite; }
+}
+@keyframes tpp-rays { 0%, 100% { transform: rotate(-4deg) scale(1); opacity: 1; } 50% { transform: rotate(4deg) scale(1.03); opacity: 0.85; } }
+@keyframes tpp-beat { 0%, 60%, 100% { transform: scale(1); } 15% { transform: scale(1.16); } 30% { transform: scale(1.04); } 45% { transform: scale(1.12); } }
+@keyframes tpp-smile { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-1.5%) rotate(-3deg); } }
+@keyframes tpp-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.8%); } }
+.hero__story { margin-top: 1.5rem; padding: 1rem 1.2rem; border-radius: 1.25rem; background: var(--smile-soft); max-width: 36rem; }
+.hero__question { margin: 0 0 0.5rem; font-family: var(--serif); font-size: clamp(1.15rem, 1.05rem + 0.6vw, 1.4rem); line-height: 1.35; color: var(--violet); }
+.hero__story p:last-child { margin-bottom: 0; }
+
+/* Text beside the carousel, as "Our Approach" on cocoon4us.com */
+.split { display: grid; gap: 1.75rem 3rem; align-items: center; }
+@media (min-width: 56rem) { .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
+.split h2 { margin-bottom: 1rem; }
+.human { font-family: var(--serif); font-size: 1.2rem; line-height: 1.45; color: var(--blue-deep); }
+.human em { font-size: 1.1em; }
+
+/* Carousel: one photo at a time (falls back to a sideways scroll without JavaScript) */
+.carousel { position: relative; overflow: hidden; border-radius: var(--radius); background: #FFFFFF; box-shadow: var(--shadow); padding: 0.9rem; }
+.carousel__track { display: flex; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory; }
+.carousel__slide { flex: 0 0 85%; scroll-snap-align: start; }
+.carousel__slide img { display: block; width: 100%; height: 16rem; object-fit: cover; border-radius: 1rem; }
+@media (min-width: 48rem) { .carousel__slide img { height: 25rem; } }
+.carousel.is-ready .carousel__track { overflow: visible; gap: 0; transition: transform 0.5s ease; }
+.carousel.is-ready .carousel__slide { flex-basis: 100%; }
+@media (prefers-reduced-motion: reduce) { .carousel.is-ready .carousel__track { transition: none; } }
+.carousel__ctl { position: absolute; top: 50%; transform: translateY(-50%); width: 2.75rem; height: 2.75rem; border: 0; border-radius: 50%; background: rgba(15, 76, 107, 0.72); color: #FFFFFF; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.carousel__ctl:hover { background: var(--blue-deep); }
+.carousel__ctl--prev { left: 1.4rem; }
+.carousel__ctl--next { right: 1.4rem; }
+.carousel__dots { position: absolute; left: 0; right: 0; bottom: 1.6rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.45rem; }
+.carousel__dots button { width: 0.6rem; height: 0.6rem; padding: 0; border: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.65); box-shadow: 0 0 0 1px rgba(15, 76, 107, 0.35); cursor: pointer; }
+.carousel__dots button[aria-current="true"] { background: var(--blue-deep); box-shadow: 0 0 0 2px #FFFFFF; }
+
+/* How we support: photo cards with a pictogram, as on cocoon4us.com */
+.sec__head--center { text-align: center; }
+.sec__head--center h2::after { left: 50% !important; transform: translateX(-50%); }
+.support { display: grid; gap: 1.25rem; }
+@media (min-width: 48rem) { .support { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.support__card { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; min-height: 19rem; padding: 1.5rem 1.4rem 1.6rem; border-radius: var(--radius); box-shadow: var(--shadow); isolation: isolate; }
+.support__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.support__card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.82) 48%, #FFFFFF 78%); }
+.support__icon { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; margin-bottom: 0.8rem; border-radius: 1rem; background: var(--smile); box-shadow: 0 6px 16px rgba(15, 76, 107, 0.18); }
+.support__icon img { width: 2rem; height: 2rem; filter: brightness(0) invert(1); }
+.support__card h3 { font-family: var(--sans); font-weight: 700; font-size: 1.2rem; color: var(--blue-deep); margin-bottom: 0.35rem; }
+.support__card p { margin: 0; font-size: 0.95rem; color: var(--text); }
+
+/* Figures in the colours of the logo, blue first */
+.figures div { border-top-color: var(--smile); }
+
+/* Pillars: Human first and larger */
+.pillars__words { color: var(--violet); }
+.pillars__fig .n1 { fill: var(--coral-soft); stroke: var(--coral); stroke-width: 2.5; }
+.pillars__fig .n2 { fill: var(--smile-soft); stroke: var(--smile); }
+.pillars__fig .label--big { font-size: 20px; font-weight: 700; }
+.pillars__human { grid-column: 1 / -1; }
+.pillars__human dt { font-size: 1.7rem; color: var(--coral-deep); }
+.pillars__human dd { font-size: 1.1rem; }
+.pillars__end { margin: 2rem 0 0; font-family: var(--serif); font-size: clamp(1.15rem, 1.05rem + 0.6vw, 1.4rem); color: var(--blue-deep); text-align: center; }
+
+/* Recognized in Europe */
+.split--logo { align-items: start; }
+.europe__logo { display: grid; place-items: center; padding: 1.5rem; border-radius: var(--radius); background: #FFFFFF; box-shadow: var(--shadow); }
+.europe__logo img { width: min(100%, 16rem); height: auto; }
+.prose em { color: var(--violet); font-weight: 500; }
+
+/* Three doors */
+@media (min-width: 52rem) { .doors--3 { grid-template-columns: repeat(3, 1fr); } }
+.doors--3 li:nth-child(3) a { background: var(--coral-soft); }
+
+/* Observatory: three short tiles, one line on data protection */
+.tiles { display: grid; gap: 1rem; margin-bottom: 1.25rem; }
+@media (min-width: 48rem) { .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tiles li { padding: 1.1rem 1.2rem; border-radius: 1.25rem; background: var(--smile-soft); border-top: 0.3rem solid var(--smile); line-height: 1.45; }
+.tiles strong { display: block; color: var(--blue-deep); margin-bottom: 0.2rem; }
+.dataline { display: flex; flex-wrap: wrap; gap: 0.5rem 0.6rem; align-items: center; justify-content: center; margin: 0; }
+.dataline strong { margin-right: 0.4rem; color: var(--blue-deep); }
+.dataline span { padding: 0.35rem 0.85rem; border-radius: 99px; background: var(--smile-soft); font-size: 0.9rem; font-weight: 600; color: var(--blue-deep); }
+
+/* Get involved: the four doors of cocoon4us.com */
+.ways { display: grid; gap: 0.9rem; }
+@media (min-width: 40rem) { .ways { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 60rem) { .ways { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ways a { display: flex; flex-direction: column; justify-content: center; gap: 0.2rem; min-height: 6rem; padding: 1.1rem 1.3rem; border-radius: 1.25rem; border: 2px solid var(--smile); background: #FFFFFF; color: var(--blue-deep); text-decoration: none; box-shadow: var(--shadow); }
+.ways a strong { font-size: 1.15rem; }
+.ways a span { font-size: 0.9rem; color: var(--text-muted); }
+.ways a:hover { background: var(--smile-soft); }
+.ways a.ways__main { background: var(--blue-deep); border-color: var(--blue-deep); color: #FFFFFF; }
+.ways a.ways__main span { color: rgba(255, 255, 255, 0.85); }
+.ways a.ways__main:hover { background: var(--blue); }
+.levels--short { margin-top: 0; }
+@media (min-width: 48rem) { .levels--short { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.levels--short > li { padding-bottom: 1rem; }
+.levels--short > li:nth-child(2) { border-top-color: var(--smile); }
+.give__card { padding: 1.4rem 1.5rem; border-radius: var(--radius); background: #FFFFFF; box-shadow: var(--shadow); max-width: 26rem; }
+.give__card h3 { margin-bottom: 0.4rem; }
+.give__number { margin: 0 0 0.3rem; font-family: var(--serif); font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem); }
+.give__number a { color: var(--blue-deep); text-decoration: none; }
+.give__card p:last-child { margin: 0; color: var(--text-muted); }
+.hospitals--all { margin-top: 0.5rem; }
+@media (min-width: 52rem) { .hospitals--all { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+
+/* Call to action: dark blue, not violet */
+.cta { background: var(--blue-deep); }
+.cta .btns .btn--ghost { border-color: rgba(255, 255, 255, 0.75); }
+
+/* Footer: soft blue, the rainbow line kept */
+.foot { background: var(--smile-soft); }
+.foot h2 { color: var(--blue); }
+
+/* Review marks in blue */
+html:has(#show-src:checked) [data-review] { outline-color: var(--violet); position: relative; }
+/* Carousel: a white frame drawn as a border, so the next photo never shows through the padding */
+.carousel { padding: 0; border: 0.9rem solid #FFFFFF; }
+.carousel__ctl--prev { left: 0.6rem; }
+.carousel__ctl--next { right: 0.6rem; }
+.carousel__dots { bottom: 0.8rem; }
+.video__play { background: rgba(15, 76, 107, 0.92); }
+.hospitals--all { justify-content: center; }
+.hero__mark { justify-self: center; }
+@media (min-width: 56rem) { .hero__mark { justify-self: end; } }
+
+/* ═════════════ v5 layer (21/10/2026): Terry's remarks on v4 ═════════════
+   The colours of cocoon4us.com for text, buttons and blocks (slate text, sky
+   blue #38bdf8, yellow #fbbf24, dark aqua #0e7490), and the brick red of the
+   logo's rainbow (#BD3004) for every emphasis. The logo always whole: no
+   detached piece (heart, smile, rays, rainbow) anywhere. */
+:root {
+  --c4u-ink: #1E293B;
+  --c4u-text: #374151;
+  --c4u-muted: #64748B;
+  --c4u-sky: #38BDF8;
+  --c4u-sky-soft: #EAF7FE;
+  --c4u-sun: #FBBF24;
+  --c4u-sun-soft: #FFFBEB;
+  --c4u-sun-hover: #FDE68A;
+  --c4u-brown: #92400E;
+  --c4u-aqua: #0E7490;
+  --c4u-aqua-deep: #155E75;
+  --c4u-aqua-soft: #ECFEFF;
+  --c4u-bg: #F8FAFC;
+  --brick: #BD3004;
+  --brick-soft: #FBEFEA;
+  --heading: var(--c4u-ink);
+  --text: var(--c4u-text);
+  --text-muted: var(--c4u-muted);
+  --link: var(--c4u-aqua);
+  --focus: var(--c4u-aqua);
+  --smile: var(--c4u-sky);
+  --smile-soft: var(--c4u-sky-soft);
+  --blue: var(--c4u-aqua);
+  --blue-deep: var(--c4u-aqua-deep);
+  --surface-tint: var(--c4u-bg);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+.review { background: var(--c4u-ink); }
+em, .prose em { color: var(--brick); font-weight: 600; }
+em.red { color: var(--brick); }
+.acro .i, .pillars__words, .pillars__human dt { color: var(--brick); }
+.sec h2:not(.vh)::after { background: var(--brick); width: 2.75rem; }
+.sec--sky { background: var(--c4u-sky-soft); }
+.sec--sun { background: var(--c4u-sun-soft); }
+.sec--teal { background: var(--c4u-aqua-soft); }
+.sec--coral { background: var(--brick-soft); }
+.quote::before { color: var(--brick); }
+.steps h3, .levels .n, .chain li::before { color: var(--c4u-aqua); }
+.levels > li:nth-child(1) { border-top-color: var(--c4u-sky); }
+.levels > li:nth-child(2) { border-top-color: var(--c4u-sun); }
+.levels > li:nth-child(3) { border-top-color: var(--c4u-aqua); }
+.figures div { border-top-color: var(--c4u-sky); }
+.figures div:nth-child(2) { border-top-color: var(--c4u-sun); }
+.figures div:nth-child(3) { border-top-color: var(--brick); }
+.figures div:nth-child(4) { border-top-color: var(--c4u-aqua); }
+.doors li:nth-child(1) a { background: var(--c4u-sky-soft); }
+.doors li:nth-child(2) a { background: var(--c4u-aqua-soft); }
+.doors li:nth-child(3) a, .doors--3 li:nth-child(3) a { background: var(--c4u-sun-soft); }
+.doors svg { stroke: var(--c4u-aqua); }
+.pillars__fig .ring { stroke: var(--c4u-sky); }
+.pillars__fig .head { fill: var(--c4u-aqua); }
+.pillars__fig .label { fill: var(--c4u-ink); }
+.pillars__fig .n1 { fill: var(--brick-soft); stroke: var(--brick); }
+.pillars__fig .n2 { fill: var(--c4u-sky-soft); stroke: var(--c4u-sky); }
+.pillars__fig .n3 { fill: var(--c4u-aqua-soft); stroke: var(--c4u-aqua); }
+.pillars__fig .n4 { fill: var(--c4u-sun-soft); stroke: var(--c4u-sun); }
+.pillars__list dt::before { background: var(--brick); }
+.pillars__list > div:nth-child(2) dt::before { background: var(--c4u-sky); }
+.pillars__list > div:nth-child(3) dt::before { background: var(--c4u-aqua); }
+.pillars__list > div:nth-child(4) dt::before { background: var(--c4u-sun); }
+
+/* Buttons as on cocoon4us.com: yellow first, white with a sky-blue border second.
+   Text in slate on yellow (white on #FBBF24 would fall to 1.7:1). */
+.btn { border-radius: 0.75rem; padding-inline: 2rem; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1); }
+.btn--solid, .btn--light { background: var(--c4u-sun); border-color: var(--c4u-sun); color: var(--c4u-ink); }
+.btn--solid:hover, .btn--light:hover { background: var(--c4u-sun-hover); border-color: var(--c4u-sun-hover); color: var(--c4u-brown); }
+.btn--line { background: #FFFFFF; border: 2px solid var(--c4u-sky); color: var(--c4u-aqua); }
+.btn--line:hover { background: var(--c4u-sky-soft); }
+@media (min-width: 56rem) {
+  .rubrics a.rubrics__cta { background: var(--c4u-sun); color: var(--c4u-ink); border-radius: 0.75rem; }
+  .rubrics a.rubrics__cta:hover { background: var(--c4u-sun-hover); color: var(--c4u-brown); }
+}
+.rubrics a[aria-current="page"] { border-bottom-color: var(--c4u-sky); }
+.ways a { border-color: var(--c4u-sky); color: var(--c4u-ink); }
+.ways a.ways__main { background: var(--c4u-sun); border-color: var(--c4u-sun); color: var(--c4u-ink); }
+.ways a.ways__main span { color: var(--c4u-ink); }
+.ways a.ways__main:hover { background: var(--c4u-sun-hover); }
+
+/* Hero: the logo without a frame, larger; the guiding question in a blue frame */
+.hero h1 em { color: var(--brick); font-weight: inherit; }
+.hero .lede strong { color: var(--c4u-ink); }
+.hero__mark { width: 17rem; height: auto; aspect-ratio: 1; border-radius: 0; background: none; box-shadow: none; }
+@media (min-width: 56rem) { .hero__mark { width: clamp(24rem, 34vw, 30rem); height: auto; } }
+.hero__mark .logo-live { width: 100%; }
+.hero__story { background: var(--c4u-sky-soft); border: 2px solid var(--c4u-sky); }
+.hero__lead { margin: 0 0 0.35rem; font-size: 0.9rem; font-weight: 600; color: var(--c4u-aqua); }
+.hero__question { color: var(--brick); margin: 0; }
+
+/* How we support: the cocoon4us.com cards — pictogram on top, photo under a white veil
+   from 10 % at the top to 100 % at the bottom */
+.support__card { justify-content: flex-start; min-height: 0; padding: 2.5rem 2rem; border-radius: 1.5rem; border: 1px solid #F1F5F9; }
+.support__card::before { background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%); }
+.support__icon { width: 5rem; height: 5rem; margin: 0 auto 2rem; border-radius: 1.25rem; background: var(--c4u-sky); box-shadow: none; }
+.support__icon img { width: 3.6rem; height: 3.6rem; padding: 0.7rem; }
+.support__card h3 { font-size: 1.5rem; color: var(--c4u-ink); margin-bottom: 1rem; }
+.support__card p { color: var(--c4u-muted); }
+
+/* Inner page heads: the whole logo instead of its rays */
+.pagehead::after { display: none; }
+.pagehead__logo { float: right; width: 5.5rem; height: auto; margin: 0 0 0.5rem 1rem; }
+@media (min-width: 56rem) { .pagehead__logo { width: 10rem; margin-top: -0.5rem; } }
+
+/* The project: no heart beside the mission; the Get Involved photo of cocoon4us.com */
+.mission { padding-left: 1.4rem; background: var(--brick-soft); }
+.approach__photo { margin: 0; }
+.approach__photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 1.5rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+.kalb { margin: 0.75rem 0 0; font-family: "Geeza Pro", "Noto Naskh Arabic", "Damascus", "Arial", sans-serif; font-size: clamp(2.4rem, 2rem + 2vw, 3.4rem); line-height: 1.2; color: var(--brick); text-align: left; }
+.prose h3 { margin: 1.5rem 0 0.5rem; }
+
+/* Get involved: "Why Your Support Matters" of cocoon4us.com */
+.impact { display: grid; gap: 1.25rem; margin-top: 2.5rem; }
+@media (min-width: 40rem) { .impact { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 64rem) { .impact { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.impact li { padding: 1.75rem 1.5rem; border-radius: 1.5rem; background: #FFFFFF; box-shadow: var(--shadow); }
+.impact__icon { display: grid; place-items: center; width: 3rem; height: 3rem; margin-bottom: 1rem; border-radius: 1rem; background: var(--c4u-sky); }
+.impact__icon img { width: 2rem; height: 2rem; filter: brightness(0) invert(1); }
+.impact h3 { font-size: 1.15rem; color: var(--c4u-ink); margin-bottom: 0.4rem; }
+.impact p { margin: 0; color: var(--c4u-muted); font-size: 0.95rem; }
+.impact__end { margin: 2.25rem auto 0; text-align: center; font-weight: 700; font-size: clamp(1.15rem, 1rem + 0.8vw, 1.5rem); color: var(--c4u-ink); max-width: 36rem; }
+.belief { margin: 1rem 0 0; font-family: var(--serif); font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem); line-height: 1.5; color: var(--c4u-ink); max-width: 32rem; }
+
+/* About the founder: the cocoon4us.com picture beside the bio */
+.founder { display: grid; gap: 2rem 3rem; align-items: start; }
+@media (min-width: 56rem) { .founder { grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); } }
+.founder__photo { margin: 0 auto; width: min(100%, 22rem); }
+.founder__photo img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+.founder h2 { margin-bottom: 1rem; }
+.founder__name { font-family: var(--serif); font-size: 1.4rem; color: var(--c4u-ink); margin-bottom: 1rem; }
+.founder__name small { display: block; font-family: var(--sans); font-size: 0.9rem; color: var(--c4u-muted); }
+.founder__quote { margin: 1.5rem 0 0; padding: 1rem 1.25rem; border-left: 0.3rem solid var(--brick); background: var(--brick-soft); border-radius: 0 1rem 1rem 0; }
+.founder__quote p { margin: 0; font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--c4u-ink); }
+
+/* Take action: dark aqua of cocoon4us.com, the whole logo and a sunflower from the brochure */
+.cta { background: var(--c4u-aqua); }
+.cta .wrap { display: grid; grid-template-columns: auto 1fr; gap: 1.25rem 2rem; align-items: center; }
+.cta .wrap > div { grid-column: 1 / -1; }
+.cta .btns { margin-top: 0; }
+.cta__logo { display: grid; place-items: center; width: 7rem; height: 7rem; border-radius: 1.5rem; background: #FFFFFF; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); }
+.cta__logo img { width: 92%; height: auto; }
+.cta__sunflower { justify-self: end; width: auto; height: 7.5rem; }
+@media (min-width: 56rem) {
+  .cta .wrap { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-rows: auto auto; }
+  .cta__logo { grid-column: 1; grid-row: 1 / span 2; width: 10rem; height: 10rem; }
+  .cta .wrap > div { grid-column: 2; }
+  .cta .wrap > div.btns { grid-row: 2; }
+  .cta__sunflower { grid-column: 3; grid-row: 1 / span 2; height: 12rem; }
+}
+.cta .btn--ghost { color: #FFFFFF; border-color: rgba(255, 255, 255, 0.8); }
+
+/* Footer: the light grey of cocoon4us.com, a sky-blue line on top */
+.foot { background: var(--c4u-bg); }
+.foot::before { background: var(--c4u-sky); }
+.foot h2 { color: var(--c4u-aqua); }
+
+/* ═════════════ v6 layer (21/10/2026, evening): Terry's remarks on v5 ═════════════
+   Large titles in the turquoise of v4 (#17739A, 5.3:1 on white); subtitles in
+   anthracite; the small bars under titles in yellow; no more pastel blue or pastel
+   yellow blocks: a warmer straw yellow, or white / light grey; the header and the
+   question frame in the dark aqua of "Take action" (#0E7490); the logo in a circle.
+   "wellness and engagement": a gold that stays yellow and reaches 3.1:1 on white
+   (large text); the C4U yellow #FBBF24 would fall to 1.7:1. */
+:root {
+  --tq: #17739A;
+  --straw: #F8EBC6;
+  --anthracite: #3F4A5A;
+  --gold: #BF8700;
+  --heading: var(--tq);
+}
+h1, h2, .pagehead h1, .hero h1 { color: var(--tq); }
+h3, .lede, .hero .lede, .pagehead .lede, .pagehead .sub, .aside, .sec__head .aside { color: var(--anthracite); }
+.hero .lede strong { color: var(--anthracite); }
+.sec h2:not(.vh)::after { background: var(--c4u-sun); }
+.cta h2::after { display: none; }
+
+/* Blocks: straw instead of pastel blue and pastel yellow; aqua-soft becomes light grey */
+.sec--sky, .sec--sun { background: var(--straw); }
+.sec--teal { background: var(--c4u-bg); }
+.doors li:nth-child(1) a, .doors li:nth-child(2) a, .doors li:nth-child(3) a, .doors--3 li:nth-child(3) a { background: var(--straw); }
+
+/* Title of the home page: "wellness and engagement" in yellow (gold, readable) */
+.hero h1 em.gold { color: var(--gold); font-style: normal; font-weight: inherit; }
+
+/* The question frame: dark aqua of Take action; label in C4U yellow at a large,
+   bold size (3.2:1, large text), the question in white (5.4:1) */
+.hero__story { background: var(--c4u-aqua); border: 0; }
+.hero__lead { color: var(--c4u-sun); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.hero__question { color: #FFFFFF; }
+
+/* Discover the project: brick red (white text 5.9:1) */
+.btn--brick { background: var(--brick); border-color: var(--brick); color: #FFFFFF; }
+.btn--brick:hover { background: #9A2703; border-color: #9A2703; color: #FFFFFF; }
+
+/* Header in the dark aqua of Take action, text in white, the logo in a white circle */
+.masthead { background: var(--c4u-aqua); border-bottom: 0; }
+.brand, .brand:hover { color: #FFFFFF; }
+.brand img { background: #FFFFFF; border-radius: 50%; padding: 0.15rem; }
+.rubrics { border-top-color: rgba(255, 255, 255, 0.25); }
+.rubrics a, .rubrics a:hover { color: #FFFFFF; }
+.rubrics a[aria-current="page"] { color: #FFFFFF; border-bottom-color: var(--c4u-sun); }
+.masthead :focus-visible { outline-color: #FFFFFF; }
+
+/* Take action: a circle around the logo */
+.cta__logo { border-radius: 50%; }
+
+/* The project: "deeply human" in yellow, on the dark aqua of the mission box */
+.mission { background: var(--c4u-aqua); color: #FFFFFF; border-left: 0; }
+.mission strong { color: #FFFFFF; }
+.mission em.yellow { color: var(--c4u-sun); font-weight: 700; font-style: normal; }
+
+/* The banner of the HDF presentation, full width under the page head */
+.banner { margin: 0; padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 4vw, 2.5rem); background: var(--c4u-bg); }
+.banner img { display: block; width: 100%; max-width: 72rem; height: auto; margin: 0 auto; border-radius: 1rem; }
+
+/* Photo n° 5 of Who We Are beside the mission */
+.side-photo { margin: 1.25rem 0 0; }
+.side-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 1.25rem; box-shadow: var(--shadow); }
+
+/* In the field: Terry's photos, square tiles (FIELD in build_v6.py) */
+.field { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin-top: 2rem; }
+@media (min-width: 48rem) { .field { gap: 1rem; } }
+.field img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 1rem; }
+.field li:last-child img { object-position: 50% 30%; }
+
+/* No pastel blue left: Observatory tiles in white with the yellow line, data pills in straw */
+.tiles li { background: #FFFFFF; border-top-color: var(--c4u-sun); box-shadow: var(--shadow); }
+.dataline span { background: var(--straw); color: var(--anthracite); }
+.pillars__fig .n2 { fill: #FFFFFF; }
+.pillars__fig .n3 { fill: #FFFFFF; }
+.pillars__fig .n4 { fill: var(--straw); }
+
+/* ═════════════ v7 layer (21/10/2026, evening): Terry's remarks on v6 ═════════════
+   "wellness and engagement" in the yellow of the Get involved button (#FBBF24), as
+   asked; alone it reads at 1.7:1 on white, so the letters get a thin dark-amber
+   outline (#92400E, 7.1:1) that keeps the yellow. The question label in white, bold
+   (5.4:1 on the dark aqua). "Discover the project" in the yellow of Get involved.
+   "deeply human" in yellow, bold, on the dark aqua (3.2:1, large bold text). */
+.hero h1 em.gold {
+  color: var(--c4u-sun);
+  -webkit-text-stroke: 0.045em #92400E;
+  paint-order: stroke fill;
+}
+.hero__lead { color: #FFFFFF; font-weight: 700; }
+
+/* Home, Our mission: the "deeply human" line on the dark aqua, word in yellow */
+.human { display: inline-block; background: var(--c4u-aqua); color: #FFFFFF; padding: 0.7rem 1rem; border-radius: 1rem; }
+em.yellow-home { color: var(--c4u-sun); font-weight: 700; font-style: normal; }
+
+/* The three section cards at the bottom of the home page: the colours of v5 */
+.doors--v5 li:nth-child(1) a { background: var(--c4u-sky-soft); }
+.doors--v5 li:nth-child(2) a { background: var(--c4u-aqua-soft); }
+.doors--v5 li:nth-child(3) a { background: var(--c4u-sun-soft); }
+
+/* In the field: smaller pictures */
+.field { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 44rem; margin-left: auto; margin-right: auto; }
+@media (min-width: 48rem) { .field { gap: 0.75rem; } }
+.field + .tbp, .sec__head + .tbp { max-width: 44rem; margin: 1.25rem auto 0; }
+
+/* Get involved: the three levels of commitment, Terry's text */
+.tiers { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 1rem; }
+@media (min-width: 56rem) { .tiers { grid-template-columns: repeat(3, 1fr); } }
+.tiers > li { position: relative; background: #FFFFFF; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 0.35rem solid var(--c4u-sun); padding: 1.4rem 1.3rem 1.3rem; }
+.tiers__n { display: inline-grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--c4u-aqua); color: #FFFFFF; font-weight: 700; }
+.tiers h3 { margin: 0.7rem 0 0.6rem; color: var(--tq); font-size: 1.2rem; }
+.tiers h3 small { display: block; margin-top: 0.15rem; font-size: 0.85rem; font-weight: 600; color: var(--anthracite); }
+.tiers p { margin: 0 0 0.6rem; font-size: 0.95rem; line-height: 1.55; }
+.tiers__k { margin-top: 0.9rem !important; font-size: 0.75rem !important; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c4u-aqua); }
+.tiers__contact { margin: 1.75rem 0 0; text-align: center; }
+
+/* Ready to make a difference: the C4U paragraph, one belief per line */
+.belief { line-height: 1.7; }
+.donate .belief { max-width: 38rem; margin: 1rem auto 0; text-align: center; }
+.donate .give { max-width: 30rem; margin: 2rem auto 0; text-align: center; }
+.donate .give__card { margin-left: auto; margin-right: auto; }
+
+/* ===== v8 layer (21/10/2026, ticket 3tsxvr6l) ===== */
+/* In the field: smaller again (Terry asks a second time) */
+.field { max-width: 36rem; }
+.field + .tbp, .sec__head + .tbp { max-width: 36rem; }
+
+/* ===== v9 layer (21/10/2026, ticket qx7u75lj) ===== */
+/* "wellness and engagement": keep it simple, the yellow of the cocoon4us.com POSITIVE
+   project page (.hero-highlight #FBBF24, weight of the title), no outline. 1.7:1 on white. */
+.hero h1 em.gold { color: #FBBF24; -webkit-text-stroke: 0; paint-order: normal; }
+
+/* Complementary commitments and funding: one frame each */
+.fund { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+@media (min-width: 40rem) { .fund { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.fund > li { background: #FFFFFF; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 0.35rem solid var(--c4u-sun); padding: 1.2rem 1.25rem; }
+.fund > li:first-child { grid-column: 1 / -1; }
+.fund h3 { margin: 0 0 0.4rem; color: var(--tq); font-size: 1.1rem; }
+.fund .fund__sub { margin: -0.2rem 0 0.5rem; font-size: 0.85rem; font-weight: 600; color: var(--anthracite); }
+.fund p { margin: 0; font-size: 0.95rem; line-height: 1.55; }
+
+/* Ready to make a difference: the donation options, as on the cocoon4us.com Donate page */
+.options { list-style: none; margin: 2rem auto 0; padding: 0; display: grid; gap: 1rem; max-width: 64rem; }
+@media (min-width: 40rem) { .options { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 64rem) { .options { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.options > li { display: flex; flex-direction: column; align-items: center; text-align: center; background: #FFFFFF; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.4rem 1.1rem; }
+.options__where { margin: 0; font-size: 0.85rem; font-weight: 600; color: var(--anthracite); }
+.options__name { margin: 0.25rem 0 0.6rem; font-family: var(--serif); font-size: 1.35rem; color: var(--tq); }
+.options__desc { margin: 0 0 0.9rem; font-size: 0.92rem; color: var(--text-muted); }
+.options .give__number { margin: 0 0 0.5rem; }
+.options__btn { margin-top: auto; pointer-events: none; background: transparent; color: var(--c4u-aqua); border: 2px solid var(--c4u-aqua); }
+.options__tbp { max-width: 64rem; margin: 1.25rem auto 0; }
+.options__other { text-align: center; margin: 1.25rem auto 0; }
+@media (min-width: 64rem) { .fund { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.options .give__number { font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.45rem); white-space: nowrap; }
+
+/* ===== v10 layer (22/10/2026, ticket xb48clor) ===== */
+/* How the program runs: the four elements in clearly framed squares */
+.runs { gap: 1rem; }
+@media (min-width: 44rem) { .runs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.runs > div { background: #FFFFFF; border: 1px solid var(--rule); border-top: 0.35rem solid var(--c4u-aqua); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.1rem 1.25rem 1.2rem; }
+.runs dt { color: var(--tq); margin-bottom: 0.35rem; }
+
+/* The Observatory: Observatory and Committee objectives, side by side */
+.objectives { display: grid; gap: 1.25rem; }
+@media (min-width: 48rem) { .objectives { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.objectives__card { background: #FFFFFF; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 0.35rem solid var(--c4u-aqua); padding: 1.3rem 1.4rem 1.4rem; }
+.objectives__card + .objectives__card { border-top-color: var(--c4u-sun); }
+.objectives__card h3 { margin: 0 0 0.75rem; font-family: var(--serif); font-weight: 400; font-size: 1.3rem; line-height: 1.25; color: var(--tq); }
+.objectives__card ul { list-style: none; margin: 0; padding: 0; }
+.objectives__card li { position: relative; padding: 0.45rem 0 0.45rem 1.4rem; border-top: 1px solid var(--rule); line-height: 1.45; }
+.objectives__card li:first-child { border-top: 0; }
+.objectives__card li::before { content: "▸"; position: absolute; left: 0; top: 0.45rem; color: var(--c4u-aqua); }
+
+/* Ready to make a difference: the three sentences under the title */
+.donate__lines { list-style: none; margin: 0.9rem auto 0; padding: 0; text-align: center; color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; }
+
+/* v11 layer (22/10/2026, ticket 7x72anjj) */
+.donate__lines li::before { content: "\25B8"; color: var(--c4u-aqua); margin-right: 0.45em; }
+.options__btn { width: 100%; max-width: 13rem; }
+.hospitals--rest { margin-top: 1rem; }
+@media (min-width: 52rem) {
+  /* Quatre cartes de la largeur de celles de la grille à cinq colonnes, centrées. */
+  .hospitals--first { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: calc(80% - 0.2rem); margin-inline: auto; }
+}
+
+/* ---- v13 layer (22/10/2026, ticket 0oyn43rq) : « Benefits for the institution » à la même hauteur dans les trois niveaux ---- */
+@media (min-width: 56rem) {
+  .tiers { grid-template-rows: repeat(5, auto); row-gap: 0; column-gap: 1rem; }
+  .tiers > li { display: grid; grid-row: span 5; grid-template-rows: subgrid; align-content: start; }
+  .tiers > li > * { align-self: start; }
+}
+
+/* ---- v14 layer (30/10/2026, arbitrage y2i2tqof) : ALAM Suisse sort de la grille des partenaires ;
+   les quatre partenaires restants, de la même largeur et centrés comme les hôpitaux au-dessus ---- */
+@media (min-width: 52rem) {
+  .hospitals--rest { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: calc(80% - 0.2rem); margin-inline: auto; }
+}
