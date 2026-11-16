@@ -1043,3 +1043,7 @@ em.yellow-home { color: var(--c4u-sun); font-weight: 700; font-style: normal; }
 @media (min-width: 52rem) {
   .hospitals--rest { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: calc(80% - 0.2rem); margin-inline: auto; }
 }
+
+/* Site public (16/11/2026) : les boutons de don sont des liens actifs. */
+a.options__btn { pointer-events: auto; cursor: pointer; }
+a.options__btn:hover, a.options__btn:focus-visible { background: var(--c4u-aqua); color: #FFFFFF; }
